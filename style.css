@@ -1,0 +1,437 @@
+/* style.css */
+body {
+    font-family: 'Nunito Sans', sans-serif; /* Modern, clean font */
+    margin: 0;
+    color: #34495e; /* Darker, sophisticated text color */
+    text-align: center;
+    line-height: 1.7;
+    overflow-x: hidden; /* Prevent horizontal scroll for animation */
+    background: linear-gradient(135deg, #fcecfc 0%, #f8e8ee 100%); /* Soft gradient background */
+}
+
+/* Animated Background - unchanged */
+#background-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+#hearts {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    overflow: hidden;
+}
+
+.heart {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background: url('heart-icon.png') no-repeat center/cover;
+    pointer-events: none;
+    animation: floatHeart 15s linear infinite;
+}
+
+@keyframes floatHeart {
+    0% {
+        opacity: 0;
+        transform: translateY(100vh) translateX(0) rotate(0deg);
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-10vh) translateX(var(--heart-x-offset)) rotate(360deg);
+    }
+}
+
+
+.page {
+    padding: 40px 30px;
+    position: relative;
+    z-index: 1;
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(8px);
+    border-radius: 25px;
+    margin: 30px auto;
+    max-width: 850px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+header {
+    margin-bottom: 30px;
+}
+
+header h1 {
+    font-family: 'Dancing Script', cursive;
+    color: #e91e63;
+    font-size: 3.5em;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.05);
+}
+
+header h1 i {
+    margin: 0 12px;
+    color: #f48fb1;
+    font-size: 0.9em;
+}
+
+.header-subtitle {
+    font-size: 1.1em;
+    color: #7f8c8d;
+    margin-top: 0;
+    font-style: italic;
+}
+
+
+/* Day Progress Bar - unchanged styles */
+#dayProgress {
+    margin-bottom: 40px;
+    padding: 0 30px;
+}
+
+.progress-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.progress-bar::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background-color: #ddd;
+    transform: translateY(-50%);
+    border-radius: 3px;
+}
+
+.progress-step {
+    flex: 1;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+}
+
+.progress-step::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 25px;
+    height: 25px;
+    background-color: #eee;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: background-color 0.4s, border-color 0.4s;
+}
+
+.progress-step.active::before {
+    background-color: #e91e63;
+    border-color: #fff;
+}
+
+.progress-step .step-label {
+    display: block;
+    margin-top: 35px;
+    color: #555;
+    font-size: 0.85em;
+}
+
+
+/* Countdown Section - unchanged styles */
+#countdownSection {
+    background-color: #fcecfc;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: inset 0 3px 8px rgba(0,0,0,0.05);
+    margin-bottom: 35px;
+}
+
+#countdownTitle {
+    color: #e91e63;
+    font-size: 2.2em;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-family: 'Dancing Script', cursive;
+}
+
+#nextWishTimer {
+    font-size: 2em;
+    font-weight: bold;
+    color: #34495e;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+}
+
+
+/* Daily Wish Section - unchanged styles */
+#dailyWish {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    margin-bottom: 30px;
+}
+
+#dayWishTitle {
+    color: #e91e63;
+    font-size: 2.3em;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-family: 'Dancing Script', cursive;
+}
+
+#wishMessage {
+    padding: 25px;
+    background-color: #ffe6f0;
+    border-radius: 15px;
+    border: 2px solid #fcecfc;
+}
+
+#wishText {
+    font-size: 1.45em;
+    color: #e74c3c;
+    margin: 0;
+    font-style: italic;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.03);
+}
+
+
+/* Music Control - unchanged styles */
+#musicControl {
+    margin-bottom: 25px;
+}
+
+#musicButton {
+    padding: 12px 25px;
+    font-size: 1.1em;
+    cursor: pointer;
+    background-color: #e91e63;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+    transition: background-color 0.3s;
+}
+
+#musicButton:hover {
+    background-color: #f48fb1;
+}
+
+#musicButton i {
+    margin-right: 8px;
+}
+
+
+footer {
+    margin-top: 25px;
+    padding: 15px;
+    background-color: #f0d4de;
+    color: #754a53;
+    font-size: 0.85em;
+    /* position: fixed;  REMOVED fixed positioning */
+    position: relative; /* Changed to relative positioning */
+    bottom: auto; /* Ensure bottom is not fixed */
+    width: 100%;
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
+
+/* Media Queries for Responsiveness */
+
+/* For smaller tablets and large phones - up to 768px */
+@media (max-width: 768px) {
+    .page {
+        padding: 30px 20px; /* Reduce padding */
+        margin: 15px auto; /* Reduce margin */
+        border-radius: 20px; /* Slightly less rounded corners */
+    }
+
+    header h1 {
+        font-size: 2.8em; /* Smaller header font */
+    }
+
+    header h1 i {
+        margin: 0 8px; /* Reduce icon spacing */
+        font-size: 0.8em; /* Smaller icons */
+    }
+
+    .header-subtitle {
+        font-size: 1em; /* Smaller subtitle font */
+    }
+
+    #dayProgress {
+        padding: 0 20px; /* Reduce progress bar padding */
+        margin-bottom: 30px; /* Reduce margin */
+    }
+
+    .progress-bar::before {
+        height: 5px; /* Thinner progress bar line */
+    }
+
+    .progress-step::before {
+        width: 20px; /* Smaller step circles */
+        height: 20px;
+    }
+
+    .progress-step .step-label {
+        margin-top: 30px; /* Adjust label spacing */
+        font-size: 0.8em; /* Smaller step label font */
+    }
+
+    #countdownSection, #dailyWish {
+        padding: 25px; /* Reduce section padding */
+        border-radius: 15px; /* Less rounded corners for sections */
+        margin-bottom: 25px; /* Reduce section margin */
+    }
+
+    #countdownTitle {
+        font-size: 2em; /* Smaller countdown title */
+    }
+
+    #nextWishTimer {
+        font-size: 1.8em; /* Smaller timer font */
+    }
+
+    #dayWishTitle {
+        font-size: 2em; /* Smaller wish title */
+    }
+
+    #wishText {
+        font-size: 1.3em; /* Smaller wish text */
+    }
+
+    #musicButton {
+        padding: 10px 20px; /* Smaller music button padding */
+        font-size: 1em; /* Smaller music button font */
+    }
+
+    footer {
+        padding: 10px; /* Reduce footer padding */
+        font-size: 0.8em; /* Smaller footer font */
+        position: relative; /* Ensure footer is relative on smaller screens */
+        bottom: auto; /* Ensure bottom is not fixed */
+    }
+}
+
+
+/* For extra small screens - phones - up to 480px */
+@media (max-width: 480px) {
+    .page {
+        padding: 20px 15px; /* Even smaller page padding */
+        margin: 10px auto; /* Even smaller page margin */
+        border-radius: 15px; /* Even less rounded corners for very small screens */
+    }
+
+    header h1 {
+        font-size: 2.2em; /* Even smaller header font for phones */
+        flex-direction: column; /* Stack header icons and text on phones */
+        text-align: center; /* Center align header text on phones */
+    }
+
+    header h1 i {
+        margin: 5px 0; /* Adjust icon margin when stacked */
+        font-size: 0.7em; /* Even smaller icons on phones */
+    }
+
+    .header-subtitle {
+        font-size: 0.9em; /* Even smaller subtitle font on phones */
+    }
+
+    #dayProgress {
+        padding: 0 15px; /* Even less progress bar padding */
+        margin-bottom: 20px; /* Even less margin */
+    }
+
+    .progress-bar {
+        flex-direction: column; /* Stack progress steps vertically on phones */
+        align-items: stretch; /* Stretch steps to full width */
+    }
+
+    .progress-bar::before {
+        width: 0; /* Hide the horizontal line in vertical layout */
+        height: 0; /* Hide the horizontal line in vertical layout */
+    }
+
+
+    .progress-step {
+        margin-bottom: 20px; /* Add margin between stacked steps */
+        text-align: center; /* Center text in stacked steps */
+    }
+
+    .progress-step:last-child {
+        margin-bottom: 0; /* No margin for the last step */
+    }
+
+
+    .progress-step::before {
+        left: 50%; /* Center circles in vertical layout */
+    }
+
+    .progress-step .step-label {
+        margin-top: 30px; /* Adjust label spacing in vertical layout */
+        font-size: 0.75em; /* Even smaller step label font on phones */
+    }
+
+
+    #countdownSection, #dailyWish {
+        padding: 20px; /* Even smaller section padding on phones */
+        border-radius: 10px; /* Even less rounded corners for sections on phones */
+        margin-bottom: 20px; /* Even less section margin on phones */
+    }
+
+    #countdownTitle {
+        font-size: 1.8em; /* Even smaller countdown title on phones */
+    }
+
+    #nextWishTimer {
+        font-size: 1.6em; /* Even smaller timer font on phones */
+    }
+
+    #dayWishTitle {
+        font-size: 1.8em; /* Even smaller wish title on phones */
+    }
+
+    #wishText {
+        font-size: 1.2em; /* Even smaller wish text on phones */
+    }
+
+    #musicControl {
+        margin-bottom: 15px; /* Even less music control margin on phones */
+    }
+
+    #musicButton {
+        padding: 8px 16px; /* Even smaller music button padding on phones */
+        font-size: 0.9em; /* Even smaller music button font on phones */
+    }
+
+    footer {
+        padding: 8px; /* Even smaller footer padding on phones */
+        font-size: 0.75em; /* Even smaller footer font on phones */
+        text-align: center; /* Center align footer text on phones */
+        position: relative; /* Ensure footer is relative on phones */
+        bottom: auto; /* Ensure bottom is not fixed on phones */
+    }
+}
+
+
+/* Fonts import - unchanged */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Nunito+Sans:wght@400;700&display=swap');
