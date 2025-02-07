@@ -1,437 +1,316 @@
 /* style.css */
 body {
-    font-family: 'Nunito Sans', sans-serif; /* Modern, clean font */
+    font-family: 'Playfair Display', serif; /* Elegant serif font */
     margin: 0;
-    color: #34495e; /* Darker, sophisticated text color */
-    text-align: center;
-    line-height: 1.7;
-    overflow-x: hidden; /* Prevent horizontal scroll for animation */
-    background: linear-gradient(135deg, #fcecfc 0%, #f8e8ee 100%); /* Soft gradient background */
-}
-
-/* Animated Background - unchanged */
-#background-animation {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: -1;
-}
-
-#hearts {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: transparent;
-    overflow: hidden;
-}
-
-.heart {
-    position: absolute;
-    width: 25px;
-    height: 25px;
-    background: url('heart-icon.png') no-repeat center/cover;
-    pointer-events: none;
-    animation: floatHeart 15s linear infinite;
-}
-
-@keyframes floatHeart {
-    0% {
-        opacity: 0;
-        transform: translateY(100vh) translateX(0) rotate(0deg);
-    }
-    10% {
-        opacity: 1;
-    }
-    90% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0;
-        transform: translateY(-10vh) translateX(var(--heart-x-offset)) rotate(360deg);
-    }
-}
-
-
-.page {
-    padding: 40px 30px;
-    position: relative;
-    z-index: 1;
-    background-color: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(8px);
-    border-radius: 25px;
-    margin: 30px auto;
-    max-width: 850px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    padding: 0;
+    background-color: #fce4ec; /* Light pink background */
+    background-image: url('heart-background.png'); /* Romantic background image */
+    background-size: cover;
+    background-blend-mode: lighten;
+    color: #633247; /* Deeper, slightly muted romantic text color */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    font-size: 16px; /* Base font size for better responsiveness */
 }
 
 header {
-    margin-bottom: 30px;
+    background-color: rgba(255, 182, 193, 0.9); /* Light coral header, slightly less transparent */
+    color: #fff; /* White header text */
+    text-align: center;
+    padding: 1.7em 0; /* Further increased header padding */
+    width: 100%;
+    margin-bottom: 35px; /* Increased header margin */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12); /* Softer, slightly larger shadow */
 }
 
-header h1 {
-    font-family: 'Dancing Script', cursive;
-    color: #e91e63;
-    font-size: 3.5em;
-    margin-bottom: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-shadow: 2px 2px 3px rgba(0,0,0,0.05);
+h1 {
+    font-family: 'Dancing Script', cursive; /* Romantic cursive font for title */
+    font-size: 2.8em; /* Even larger title font size */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Slightly stronger text shadow */
+    letter-spacing: 1px; /* Add letter spacing for title */
 }
 
-header h1 i {
-    margin: 0 12px;
-    color: #f48fb1;
-    font-size: 0.9em;
+main {
+    width: 88%; /* Slightly wider main section */
+    max-width: 980px; /* Increased max width */
+    padding: 35px; /* Increased main padding */
+    background-color: rgba(255, 255, 255, 0.92); /* White main background, slightly less transparent */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.18); /* Deeper, larger shadow for main */
+    margin-bottom: 35px; /* Increased main margin */
+    border-radius: 20px; /* Even more rounded corners */
 }
 
-.header-subtitle {
-    font-size: 1.1em;
-    color: #7f8c8d;
-    margin-top: 0;
-    font-style: italic;
+section {
+    margin-bottom: 30px; /* Increased section margin */
+    padding: 30px; /* Increased section padding */
+    border: 2px solid rgba(255, 182, 193, 0.6); /* Light coral border, slightly less transparent */
+    border-radius: 15px; /* More rounded corners for sections */
+    background-color: rgba(255, 240, 245, 0.75); /* Light blush background, slightly less transparent */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Added box-shadow transition */
+}
+
+section:hover {
+    transform: scale(1.03); /* Slightly more scale on hover */
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2); /* More pronounced shadow on hover */
 }
 
 
-/* Day Progress Bar - unchanged styles */
-#dayProgress {
-    margin-bottom: 40px;
-    padding: 0 30px;
+h2 {
+    color: #d6336c; /* More vibrant pink for headings */
+    text-align: center;
+    font-family: 'Lora', serif; /* Elegant serif font for section headings */
+    font-size: 2.1em; /* Further increased heading font size */
+    margin-bottom: 25px; /* Increased heading margin */
+    letter-spacing: 0.5px; /* Add letter spacing for headings */
 }
 
+/* Advanced Progress Bar */
 .progress-bar {
     display: flex;
     justify-content: space-between;
-    align-items: center;
     position: relative;
-    margin-bottom: 25px;
+    margin-bottom: 35px; /* Increased progress bar margin */
 }
 
-.progress-bar::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    height: 6px;
-    background-color: #ddd;
-    transform: translateY(-50%);
-    border-radius: 3px;
-}
-
-.progress-step {
-    flex: 1;
+.progress-bar .step {
+    text-align: center;
     position: relative;
     z-index: 1;
-    text-align: center;
+    width: 14.28%; /* 100% / 7 steps */
 }
 
-.progress-step::before {
-    content: '';
+.progress-bar .step-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.85); /* White step number background, slightly less transparent */
+    border: 2px solid #ffb6c1;
+    border-radius: 50%;
+    width: 40px; /* Increased step number size */
+    height: 40px; /* Increased step number size */
+    margin: 0 auto 18px; /* Increased step number margin */
+    color: #e91e63;
+    font-weight: bold;
+    font-size: 1.1em; /* Slightly larger step number font size */
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.3s ease; /* Added transform transition */
+    position: relative;
+}
+
+.progress-bar .step.completed .step-number {
+    background-color: #d6336c; /* More vibrant pink for completed steps */
+    color: white;
+    border-color: #d6336c; /* More vibrant pink border */
+    transform: scale(1.05); /* Slightly scale up completed step */
+}
+
+.progress-bar .step.completed .step-name {
+    color: #6a6a6a; /* Slightly darker grey for completed names */
+    font-size: 0.95em; /* Slightly reduced size for completed names */
+}
+
+/* Completion Icon (Heart) */
+.progress-bar .step.completed .step-number::after {
+    content: '\2665'; /* Heart symbol */
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    width: 25px;
-    height: 25px;
-    background-color: #eee;
-    border-radius: 50%;
-    border: 2px solid #fff;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    transition: background-color 0.4s, border-color 0.4s;
-}
-
-.progress-step.active::before {
-    background-color: #e91e63;
-    border-color: #fff;
-}
-
-.progress-step .step-label {
-    display: block;
-    margin-top: 35px;
-    color: #555;
-    font-size: 0.85em;
-}
-
-
-/* Countdown Section - unchanged styles */
-#countdownSection {
-    background-color: #fcecfc;
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: inset 0 3px 8px rgba(0,0,0,0.05);
-    margin-bottom: 35px;
-}
-
-#countdownTitle {
-    color: #e91e63;
-    font-size: 2.2em;
-    margin-top: 0;
-    margin-bottom: 15px;
-    font-family: 'Dancing Script', cursive;
-}
-
-#nextWishTimer {
-    font-size: 2em;
-    font-weight: bold;
-    color: #34495e;
-    letter-spacing: 1px;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
-}
-
-
-/* Daily Wish Section - unchanged styles */
-#dailyWish {
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    margin-bottom: 30px;
-}
-
-#dayWishTitle {
-    color: #e91e63;
-    font-size: 2.3em;
-    margin-top: 0;
-    margin-bottom: 20px;
-    font-family: 'Dancing Script', cursive;
-}
-
-#wishMessage {
-    padding: 25px;
-    background-color: #ffe6f0;
-    border-radius: 15px;
-    border: 2px solid #fcecfc;
-}
-
-#wishText {
-    font-size: 1.45em;
-    color: #e74c3c;
-    margin: 0;
-    font-style: italic;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.03);
-}
-
-
-/* Music Control - unchanged styles */
-#musicControl {
-    margin-bottom: 25px;
-}
-
-#musicButton {
-    padding: 12px 25px;
-    font-size: 1.1em;
-    cursor: pointer;
-    background-color: #e91e63;
+    transform: translate(-50%, -50%) scale(1.1); /* Slightly larger heart icon */
+    font-size: 1.3em; /* Larger heart icon size */
     color: white;
-    border: none;
-    border-radius: 30px;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
-    transition: background-color 0.3s;
+    opacity: 0;
+    animation: fadeInHeart 0.6s ease-in-out forwards 0.4s; /* Slightly longer fade-in animation */
 }
 
-#musicButton:hover {
-    background-color: #f48fb1;
-}
-
-#musicButton i {
-    margin-right: 8px;
+@keyframes fadeInHeart {
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1); /* Final scale to normal */
+    }
 }
 
 
+.progress-bar .step.active .step-number {
+    transform: scale(1.3); /* Even more pronounced scale up for active step */
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3); /* Stronger shadow for active step */
+    background-color: #ffe6ec; /* Even lighter pink for active step background */
+    border-color: #ff77b9; /* More vibrant hot pink border for active step */
+    animation: pulse 1.7s infinite cubic-bezier(0.66, 0, 0, 1); /* Slightly slower pulse animation */
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1.3);
+    }
+    50% {
+        transform: scale(1.38);
+    }
+}
+
+
+.progress-line {
+    position: absolute;
+    top: 20px; /* Adjusted top position */
+    left: 0;
+    right: 0;
+    height: 4px; /* Thicker progress line */
+    background-color: rgba(221, 221, 221, 0.8); /* Light grey progress line, slightly less transparent */
+    z-index: 0;
+    overflow: hidden;
+    border-radius: 2px; /* Slightly rounded progress line */
+}
+
+.progress-line::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(to right, #ff77b9, #d6336c); /* More vibrant gradient */
+    transition: width 1.2s ease-out; /* Slightly slower animation */
+    background-size: 220% 100%; /* Even wider gradient for smoother animation */
+    background-position: right bottom;
+    animation: progress-animation 2.2s linear forwards; /* Slightly longer animation duration */
+    border-radius: 2px; /* Match progress line border-radius */
+}
+
+@keyframes progress-animation {
+    to {
+        background-position: left bottom;
+        width: 100%;
+    }
+}
+
+
+/* Wish Section */
+.wish-section {
+    background-color: rgba(255, 248, 250, 0.6); /* Lightest blush background for wish section */
+    border: 2px solid rgba(255, 192, 203, 0.6); /* Light pink border for wish section */
+}
+
+
+.wish-message {
+    font-size: 1.4em; /* Further increased wish text size */
+    text-align: center;
+    padding: 25px; /* Increased wish message padding */
+    background-color: rgba(255, 235, 238, 0.5); /* Very light pink wish background, slightly less transparent */
+    border-radius: 15px; /* More rounded corners for wish message */
+    border: 2px dashed #ffb6c1;
+    margin-top: 20px; /* Increased wish message margin */
+    font-family: 'Shadows Into Light', cursive;
+    line-height: 1.7; /* Improved line height even more */
+    letter-spacing: 0.03em; /* Slight increase in letter spacing */
+    color: #c41d38; /* Deeper, richer red for wish text */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.08); /* More pronounced text shadow */
+}
+
+/* Timer Section */
+.timer-section {
+    background-color: rgba(255, 248, 250, 0.6); /* Lightest blush background for timer section */
+    border: 2px solid rgba(255, 192, 203, 0.6); /* Light pink border for timer section */
+}
+
+.timer {
+    font-size: 1.8em; /* Further increased timer text size */
+    text-align: center;
+    font-weight: bold;
+    color: #d6336c; /* More vibrant pink for timer text */
+    padding: 25px; /* Increased timer padding */
+    border: 3px double #ffb6c1;
+    border-radius: 15px; /* More rounded corners for timer */
+    margin-top: 20px; /* Increased timer margin */
+    background-color: rgba(255, 255, 255, 0.7); /* White timer background, slightly less transparent */
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.15); /* Slightly stronger shadow for timer */
+    letter-spacing: 1px; /* Add letter spacing for timer */
+}
+
+/* Footer */
 footer {
-    margin-top: 25px;
-    padding: 15px;
-    background-color: #f0d4de;
-    color: #754a53;
-    font-size: 0.85em;
-    /* position: fixed;  REMOVED fixed positioning */
-    position: relative; /* Changed to relative positioning */
-    bottom: auto; /* Ensure bottom is not fixed */
+    text-align: center;
+    padding: 1.4em 0; /* Further increased footer padding */
+    background-color: rgba(255, 182, 193, 0.9); /* Light coral footer, slightly less transparent */
+    color: #fff; /* White footer text */
     width: 100%;
-    box-sizing: border-box; /* Include padding and border in element's total width and height */
+    position: fixed;
+    bottom: 0;
+    box-shadow: 0 -3px 5px rgba(0, 0, 0, 0.08); /* More pronounced top shadow for footer */
+    font-size: 1.0em; /* Slightly larger footer font size */
 }
 
-/* Media Queries for Responsiveness */
+footer p {
+    font-size: 1.0em; /* Ensure paragraph font size is also updated */
+    letter-spacing: 0.02em; /* Slight increase in footer letter spacing */
+}
 
-/* For smaller tablets and large phones - up to 768px */
+/* Responsive Design */
 @media (max-width: 768px) {
-    .page {
-        padding: 30px 20px; /* Reduce padding */
-        margin: 15px auto; /* Reduce margin */
-        border-radius: 20px; /* Slightly less rounded corners */
+    body {
+        font-size: 15px; /* Slightly reduced base font size on smaller screens */
     }
 
-    header h1 {
-        font-size: 2.8em; /* Smaller header font */
+    main {
+        width: 96%; /* Wider main on smaller screens */
+        padding: 25px; /* Adjusted main padding */
+        margin-bottom: 30px; /* Adjusted main margin */
+        border-radius: 18px; /* Adjusted main border-radius */
     }
 
-    header h1 i {
-        margin: 0 8px; /* Reduce icon spacing */
-        font-size: 0.8em; /* Smaller icons */
+    section {
+        padding: 20px; /* Adjusted section padding */
+        margin-bottom: 25px; /* Adjusted section margin */
+        border-radius: 10px; /* Adjusted section border-radius */
     }
 
-    .header-subtitle {
-        font-size: 1em; /* Smaller subtitle font */
+    h1 {
+        font-size: 2.3em; /* Adjusted title size for smaller screens */
     }
 
-    #dayProgress {
-        padding: 0 20px; /* Reduce progress bar padding */
-        margin-bottom: 30px; /* Reduce margin */
+    h2 {
+        font-size: 1.8em; /* Adjusted heading size for smaller screens */
+        margin-bottom: 20px; /* Adjusted heading margin */
     }
 
-    .progress-bar::before {
-        height: 5px; /* Thinner progress bar line */
+    .wish-message {
+        font-size: 1.2em; /* Adjusted wish text size for smaller screens */
+        padding: 20px; /* Adjusted wish padding */
+        line-height: 1.5; /* Adjusted line height for smaller screens */
     }
 
-    .progress-step::before {
-        width: 20px; /* Smaller step circles */
-        height: 20px;
-    }
-
-    .progress-step .step-label {
-        margin-top: 30px; /* Adjust label spacing */
-        font-size: 0.8em; /* Smaller step label font */
-    }
-
-    #countdownSection, #dailyWish {
-        padding: 25px; /* Reduce section padding */
-        border-radius: 15px; /* Less rounded corners for sections */
-        margin-bottom: 25px; /* Reduce section margin */
-    }
-
-    #countdownTitle {
-        font-size: 2em; /* Smaller countdown title */
-    }
-
-    #nextWishTimer {
-        font-size: 1.8em; /* Smaller timer font */
-    }
-
-    #dayWishTitle {
-        font-size: 2em; /* Smaller wish title */
-    }
-
-    #wishText {
-        font-size: 1.3em; /* Smaller wish text */
-    }
-
-    #musicButton {
-        padding: 10px 20px; /* Smaller music button padding */
-        font-size: 1em; /* Smaller music button font */
-    }
-
-    footer {
-        padding: 10px; /* Reduce footer padding */
-        font-size: 0.8em; /* Smaller footer font */
-        position: relative; /* Ensure footer is relative on smaller screens */
-        bottom: auto; /* Ensure bottom is not fixed */
-    }
-}
-
-
-/* For extra small screens - phones - up to 480px */
-@media (max-width: 480px) {
-    .page {
-        padding: 20px 15px; /* Even smaller page padding */
-        margin: 10px auto; /* Even smaller page margin */
-        border-radius: 15px; /* Even less rounded corners for very small screens */
-    }
-
-    header h1 {
-        font-size: 2.2em; /* Even smaller header font for phones */
-        flex-direction: column; /* Stack header icons and text on phones */
-        text-align: center; /* Center align header text on phones */
-    }
-
-    header h1 i {
-        margin: 5px 0; /* Adjust icon margin when stacked */
-        font-size: 0.7em; /* Even smaller icons on phones */
-    }
-
-    .header-subtitle {
-        font-size: 0.9em; /* Even smaller subtitle font on phones */
-    }
-
-    #dayProgress {
-        padding: 0 15px; /* Even less progress bar padding */
-        margin-bottom: 20px; /* Even less margin */
+    .timer {
+        font-size: 1.5em; /* Adjusted timer text size for smaller screens */
+        padding: 20px; /* Adjusted timer padding */
     }
 
     .progress-bar {
-        flex-direction: column; /* Stack progress steps vertically on phones */
-        align-items: stretch; /* Stretch steps to full width */
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 25px; /* Adjusted progress bar margin */
     }
 
-    .progress-bar::before {
-        width: 0; /* Hide the horizontal line in vertical layout */
-        height: 0; /* Hide the horizontal line in vertical layout */
+    .progress-bar .step {
+        width: 100%;
+        margin-bottom: 30px; /* Adjusted step margin */
     }
 
-
-    .progress-step {
-        margin-bottom: 20px; /* Add margin between stacked steps */
-        text-align: center; /* Center text in stacked steps */
+    .progress-bar .step-number {
+        width: 35px; /* Adjusted step number size */
+        height: 35px; /* Adjusted step number size */
+        margin-bottom: 12px; /* Adjusted step number margin */
+        font-size: 1.0em; /* Adjusted step number font size */
     }
 
-    .progress-step:last-child {
-        margin-bottom: 0; /* No margin for the last step */
+    .progress-line {
+        top: 18px; /* Adjusted top position */
+        bottom: 0;
+        left: 18px; /* Adjusted left position */
+        width: 4px; /* Adjusted line width */
+        height: auto;
     }
 
-
-    .progress-step::before {
-        left: 50%; /* Center circles in vertical layout */
-    }
-
-    .progress-step .step-label {
-        margin-top: 30px; /* Adjust label spacing in vertical layout */
-        font-size: 0.75em; /* Even smaller step label font on phones */
-    }
-
-
-    #countdownSection, #dailyWish {
-        padding: 20px; /* Even smaller section padding on phones */
-        border-radius: 10px; /* Even less rounded corners for sections on phones */
-        margin-bottom: 20px; /* Even less section margin on phones */
-    }
-
-    #countdownTitle {
-        font-size: 1.8em; /* Even smaller countdown title on phones */
-    }
-
-    #nextWishTimer {
-        font-size: 1.6em; /* Even smaller timer font on phones */
-    }
-
-    #dayWishTitle {
-        font-size: 1.8em; /* Even smaller wish title on phones */
-    }
-
-    #wishText {
-        font-size: 1.2em; /* Even smaller wish text on phones */
-    }
-
-    #musicControl {
-        margin-bottom: 15px; /* Even less music control margin on phones */
-    }
-
-    #musicButton {
-        padding: 8px 16px; /* Even smaller music button padding on phones */
-        font-size: 0.9em; /* Even smaller music button font on phones */
-    }
-
-    footer {
-        padding: 8px; /* Even smaller footer padding on phones */
-        font-size: 0.75em; /* Even smaller footer font on phones */
-        text-align: center; /* Center align footer text on phones */
-        position: relative; /* Ensure footer is relative on phones */
-        bottom: auto; /* Ensure bottom is not fixed on phones */
+    .progress-line::before {
+        width: 4px; /* Adjusted line width */
+        height: 0%;
     }
 }
-
-
-/* Fonts import - unchanged */
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Nunito+Sans:wght@400;700&display=swap');

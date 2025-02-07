@@ -1,202 +1,118 @@
 // script.js
 document.addEventListener('DOMContentLoaded', function() {
-    const dayWishTitle = document.getElementById('dayWishTitle');
-    const wishTimer = document.getElementById('timer');
-    const wishMessageDiv = document.getElementById('wishMessage');
-    const wishText = document.getElementById('wishText');
-    const musicButton = document.getElementById('musicButton');
-    const backgroundMusic = document.getElementById('backgroundMusic');
-    const progressSteps = document.querySelectorAll('.progress-step');
-    const countdownTitle = document.getElementById('countdownTitle');
-    const dailyWishSection = document.getElementById('dailyWish');
-
-
-    let musicPlaying = true;
-    dailyWishSection.style.display = 'none'; // Initially hide daily wish
-
-
-    const valentineWeekWishes = [
-        {
-            day: 7,
-            month: 1, // January is 0, February is 1 (Month is 0-indexed)
-            wishDayName: "Rose Day",
-            wish: "Happy Rose Day, my love! Just like roses, your presence fills my life with beauty and fragrance."
-        },
-        {
-            day: 8,
-            month: 1,
-            wishDayName: "Propose Day",
-            wish: "On this Propose Day, I want to ask you again and again - will you continue to be mine forever? Happy Propose Day!"
-        },
-        {
-            day: 9,
-            month: 1,
-            wishDayName: "Chocolate Day",
-            wish: "Sweet as chocolates, you make every day delightful. Happy Chocolate Day to my sweetest girlfriend!"
-        },
-        {
-            day: 10,
-            month: 1,
-            wishDayName: "Teddy Day",
-            wish: "Sending you a big teddy hug on Teddy Day! Hope this cuddly bear reminds you of my warm embrace."
-        },
-        {
-            day: 11,
-            month: 1,
-            wishDayName: "Promise Day",
-            wish: "On this Promise Day, I promise to always cherish, love, and support you. Happy Promise Day, my dear!"
-        },
-        {
-            day: 12,
-            month: 1,
-            wishDayName: "Hug Day",
-            wish: "Sending you the warmest hugs on Hug Day. Can't wait to hug you in person! Happy Hug Day!"
-        },
-        {
-            day: 13,
-            month: 1,
-            wishDayName: "Kiss Day",
-            wish: "Wishing you a day full of sweet kisses on Kiss Day! Sending you all my love and kisses."
-        },
-        
-        {
-            day: 14,
-            month: 1,
-            wishDayName: "Valentine's Day",
-            wish: "Happy Valentine's Day to the love of my life! Every day with you feels like Valentine's Day. I love you more than words can say."
-        }
+    const events = [
+        { day: 7, name: "Rose Day", wish: "Happy Rose Day! May your day be as beautiful as a rose and filled with love and fragrance." },
+        { day: 8, name: "Propose Day", wish: "Happy Propose Day! Dare to express your feelings and make someone's day special." },
+        { day: 9, name: "Chocolate Day", wish: "Happy Chocolate Day! Indulge in sweetness and share the joy with your loved ones." },
+        { day: 10, name: "Teddy Day", wish: "Happy Teddy Day! Sending you a warm and cuddly teddy to hug and cherish." },
+        { day: 11, name: "Promise Day", wish: "Happy Promise Day! Make promises you can keep and strengthen your bonds of love." },
+        { day: 12, name: "Hug Day", wish: "Happy Hug Day! A warm hug can say a thousand words. Embrace your dear ones today." },
+        { day: 13, name: "Kiss Day", wish: "Happy Kiss Day! Seal your love with a kiss and make unforgettable memories." },
+        { day: 14, name: "Valentine's Day", wish: "Happy Valentine's Day! Celebrate love in all its forms and cherish your special connections." }
     ];
 
+    const currentDate = new Date();
+    const currentDay = currentDate.getDate();
+    const currentMonth = currentDate.getMonth() + 1; // Month is 0-indexed
+    const currentYear = currentDate.getFullYear();
 
-    function displayWish(wish) {
-        // Function to display the wish message and update UI elements
-        dayWishTitle.textContent = `Happy ${wish.wishDayName}!`;
-        wishText.textContent = wish.wish;
-        wishMessageDiv.style.display = 'block'; // Show wish message
-        wishTimer.style.display = 'none';      // Hide timer
-        dailyWishSection.style.display = 'block'; // Make sure daily wish section is visible
-        countdownTitle.textContent = "Today's Wish:"; // Update countdown title to indicate wish is shown
+    // Check if it's February
+    if (currentMonth === 2) {
+        updateProgressBar(currentDay);
+        displayDailyWish(currentDay);
+        updateTimer(currentDay);
+    } else {
+        // If not February, display a default message or hide sections
+        document.getElementById('event-name').textContent = "Valentine Week Not Started Yet!";
+        document.getElementById('daily-wish').textContent = "Come back in February to celebrate Valentine Week.";
+        document.getElementById('next-event-timer').textContent = "See you next February!";
+        document.getElementById('progress-section').style.display = 'none'; // Hide progress bar if not Feb
     }
 
 
-    function startTimerForNextWish() {
-        const now = new Date(); // Get current date and time
-        const currentMonth = now.getMonth();
-        const currentDate = now.getDate();
-        const currentYear = now.getFullYear();
-        const currentHour = now.getHours();
+    function updateProgressBar(day) {
+        const steps = document.querySelectorAll('.step');
+        const progressLine = document.querySelector('.progress-line::before');
+        let completedSteps = 0;
 
-
-        let todayWishData = null;
-        let nextWishDayData = null;
-        let todayWishIndex = -1; // Initialize today's wish index
-
-
-        // Iterate through the valentineWeekWishes array to find today's and the next wish
-        for (let i = 0; i < valentineWeekWishes.length; i++) {
-            const wishDay = valentineWeekWishes[i];
-            if (currentMonth === wishDay.month && currentDate === wishDay.day) {
-                // Check if the current date matches a wish day
-                todayWishData = wishDay;
-                todayWishIndex = i; // Store the index of today's wish
-                if (currentHour >= 0) {
-                    // If it's today's wish day and current hour is past midnight (00:00:00), display wish immediately
-                    displayWish(todayWishData);
-                    // Intentionally NOT returning here, we want to start timer for the next day *after* displaying today's wish
-                    break; // Break after finding today's wish
-                }
-            } else if (new Date(currentYear, wishDay.month, wishDay.day) > now) {
-                // If the wish day is in the future, it's the next wish day
-                nextWishDayData = wishDay;
-                break; // Take the first future wish day as the next target
-            }
-        }
-
-
-        if (nextWishDayData) {
-            // If there is a next wish day in the future, start countdown timer
-            countdownTitle.textContent = "Next Wish Reveal:";
-            // Set the target time to midnight (00:00:00) of the next wish day
-            const nextWishRevealTime = new Date(currentYear, nextWishDayData.month, nextWishDayData.day, 0, 0, 0).getTime();
-
-
-            const timerInterval = setInterval(function() {
-                const currentTime = new Date().getTime(); // Get current time inside the interval for accurate countdown
-                const timeLeft = nextWishRevealTime - currentTime; // Calculate time difference
-
-
-                if (timeLeft <= 0) {
-                    // When timer reaches zero (midnight of next wish day)
-                    clearInterval(timerInterval); // Stop the timer
-
-                    if (todayWishIndex + 1 < valentineWeekWishes.length) {
-                        // If there are more wishes in the week after today's wish
-                        const nextDayWish = valentineWeekWishes[todayWishIndex + 1]; // Get the wish for the *next* day in sequence
-                        displayWish(nextDayWish); // Display the wish for the next day
-                        setActiveProgressStep(); // Update progress bar to reflect current day
-                        startTimerForNextWish(); // Restart timer to count down to the *following* wish day
-                    } else {
-                        // If it was the last wish day (Valentine's Day), show completion message
-                        countdownTitle.textContent = "Valentine's Week Complete!";
-                        wishTimer.textContent = "Hope you enjoyed Valentine's Week!";
-                        wishTimer.style.display = 'none'; // Hide timer when week is complete
-                    }
-
-
-                } else {
-                    // While timer is still running, calculate and display remaining time
-                    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-                    const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-                    const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-
-                    wishTimer.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`; // Update timer display
-                }
-            }, 1000); // Update timer every 1 second
-        } else if (todayWishData) {
-             // If it's today's wish day but no future wishes (e.g., on or after Valentine's Day)
-             displayWish(todayWishData); // Just display today's wish
-             countdownTitle.textContent = "Valentine's Week Complete!"; // Update title to week complete message
-             wishTimer.style.display = 'none'; // Hide timer as week is complete
-        }
-         else {
-            // If no wish day found at all (should not usually happen in Valentine's week context, but as a fallback)
-            countdownTitle.textContent = "Valentine's Week Complete!";
-            wishTimer.textContent = "Hope you enjoyed Valentine's Week!";
-            wishTimer.style.display = 'none'; // Hide timer when week is complete
-        }
-    }
-
-
-
-    function setActiveProgressStep() {
-        // Function to highlight active step in the progress bar based on current date
-        const todayDate = new Date().getDate();
-        progressSteps.forEach(step => {
-            const stepDay = parseInt(step.dataset.day);
-            if (todayDate >= stepDay) {
-                step.classList.add('active'); // Add 'active' class for styling the step as completed/current
-            } else {
-                step.classList.remove('active'); // Remove 'active' class for future steps
+        steps.forEach(step => {
+            const stepDay = parseInt(step.getAttribute('data-day'));
+            if (stepDay < day) {
+                step.classList.add('completed');
+                completedSteps++;
+            } else if (stepDay === day) {
+                step.classList.add('active'); // Optionally add 'active' class for current day
             }
         });
+
+        // Calculate progress line width based on completed steps
+        let progressWidth;
+        if (steps.length > 1) {
+            progressWidth = (completedSteps / (steps.length - 1)) * 100;
+        } else {
+            progressWidth = 100; // For a single step progress bar
+        }
+
+        if (progressLine) {
+            if (window.innerWidth <= 768) {
+                progressLine.style.height = `${progressWidth}%`; // For vertical progress on smaller screens
+                progressLine.style.width = '2px';
+            } else {
+                progressLine.style.width = `${progressWidth}%`; // For horizontal progress on larger screens
+                progressLine.style.height = '2px';
+            }
+        }
     }
 
+    function displayDailyWish(day) {
+        const eventNameElement = document.getElementById('event-name');
+        const wishMessageElement = document.getElementById('daily-wish');
 
-    musicButton.addEventListener('click', function() {
-        // Music button click handler to toggle background music
-        if (musicPlaying) {
-            backgroundMusic.pause();
-            musicButton.innerHTML = '<i class="fas fa-music"></i> Music: Off';
+        const todayEvent = events.find(event => event.day === day);
+        if (todayEvent) {
+            eventNameElement.textContent = todayEvent.name;
+            if (day === 14) { // Check if it's Valentine's Day
+                wishMessageElement.innerHTML = `${todayEvent.wish} <br><br><a href="https://mjsarmah57.github.io/surprise/" target="_blank" style="color: #d6336c; text-decoration: none; font-weight: bold;">Click Me For a one more gift!</a>`;
+            } else {
+                wishMessageElement.textContent = todayEvent.wish;
+            }
+        } else if (day < 7) {
+            eventNameElement.textContent = "Valentine Week Countdown";
+            wishMessageElement.textContent = "Valentine Week is just around the corner. Get ready to celebrate love!";
+        } else if (day > 14) {
+            eventNameElement.textContent = "Valentine Week Over";
+            wishMessageElement.textContent = "Valentine Week 2025 has concluded. Hope you had a week full of love!";
         } else {
-            backgroundMusic.play();
-            musicButton.innerHTML = '<i class="fas fa-music"></i> Music: On';
+            eventNameElement.textContent = "Unknown Event";
+            wishMessageElement.textContent = "Happy Valentine Week!";
         }
-        musicPlaying = !musicPlaying; // Toggle music state
-    });
+    }
 
+    function updateTimer(currentDay) {
+        const timerElement = document.getElementById('next-event-timer');
+        let nextEvent = events.find(event => event.day > currentDay);
 
-    setActiveProgressStep(); // Set initial active step on progress bar
-    startTimerForNextWish(); // Start the timer logic to manage wish reveals and countdowns
-    backgroundMusic.play(); // Start background music on page load
+        if (nextEvent) {
+            const nextEventDate = new Date(currentYear, 1, nextEvent.day); // Month 1 is February
+            const timeLeft = nextEventDate.getTime() - currentDate.getTime();
+
+            if (timeLeft > 0) {
+                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+                timerElement.textContent = `Next Event (${nextEvent.name}) in ${days}d : ${hours}h : ${minutes}m : ${seconds}s`;
+            } else {
+                 // If current day is the last event day or after, show Valentine's day message
+                if (currentDay <= 14) {
+                    timerElement.textContent = "It's " + events.find(event => event.day === currentDay).name + "!";
+                } else {
+                    timerElement.textContent = "Valentine Week has ended for this year!";
+                }
+            }
+        } else {
+            timerElement.textContent = "Valentine Week has ended for this year!";
+        }
+    }
 });

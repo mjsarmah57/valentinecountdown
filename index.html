@@ -3,59 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Valentine's Week Countdown</title>
+    <title>Valentine Week Wishes</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Lora:wght@500&family=Playfair+Display:wght@400;700&family=Shadows+Into+Light&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div id="wishPage" class="page">
-        <header>
-            <h1><i class="fas fa-heartbeat"></i> Valentine's Week Countdown <i class="fas fa-heartbeat"></i></h1>
-            <p class="header-subtitle">Anticipating each day of love...</p>
-        </header>
+    <header>
+        <h1>Valentine Week 2025</h1>
+    </header>
 
-        <div id="dayProgress">
+    <main>
+        <section id="progress-section">
+            <h2>Valentine Week Progress</h2>
             <div class="progress-bar">
-                <div class="progress-step active" data-day="7"><span class="step-label">Rose Day</span></div>
-                <div class="progress-step" data-day="8"><span class="step-label">Propose Day</span></div>
-                <div class="progress-step" data-day="9"><span class="step-label">Chocolate Day</span></div>
-                <div class="progress-step" data-day="10"><span class="step-label">Teddy Day</span></div>
-                <div class="progress-step" data-day="11"><span class="step-label">Promise Day</span></div>
-                <div class="progress-step" data-day="12"><span class="step-label">Hug Day</span></div>
-                <div class="progress-step" data-day="13"><span class="step-label">Kiss Day</span></div>
-                <div class="progress-step" data-day="14"><span class="step-label">Valentine's Day</span></div>
+                <div class="step" data-day="7">
+                    <span class="step-number">1</span>
+                    <span class="step-name">Rose Day</span>
+                </div>
+                <div class="step" data-day="8">
+                    <span class="step-number">2</span>
+                    <span class="step-name">Propose Day</span>
+                </div>
+                <div class="step" data-day="9">
+                    <span class="step-number">3</span>
+                    <span class="step-name">Chocolate Day</span>
+                </div>
+                <div class="step" data-day="10">
+                    <span class="step-number">4</span>
+                    <span class="step-name">Teddy Day</span>
+                </div>
+                <div class="step" data-day="11">
+                    <span class="step-number">5</span>
+                    <span class="step-name">Promise Day</span>
+                </div>
+                <div class="step" data-day="12">
+                    <span class="step-number">6</span>
+                    <span class="step-name">Hug Day</span>
+                </div>
+                <div class="step" data-day="13">
+                    <span class="step-number">7</span>
+                    <span class="step-name">Kiss Day</span>
+                </div>
+                <div class="step" data-day="14">
+                    <span class="step-number">8</span>
+                    <span class="step-name">Valentine's Day</span>
+                </div>
+                <div class="progress-line"></div>
             </div>
-        </div>
+        </section>
 
-        <div id="countdownSection">
-            <h2 id="countdownTitle">Next Wish Reveal</h2>
-            <div id="nextWishTimer">
-                <span id="timer"></span>
-            </div>
-        </div>
+        <section id="wish-section">
+            <h2 id="event-name"></h2>
+            <div class="wish-message" id="daily-wish">
+                </div>
+        </section>
 
-        <div id="dailyWish" style="display: none;">
-            <h2 id="dayWishTitle"></h2>
-            <div id="wishMessage">
-                <p id="wishText"></p>
-            </div>
-        </div>
+        <section id="timer-section">
+            <h2>Next Event Timer</h2>
+            <div class="timer" id="next-event-timer">
+                </div>
+        </section>
+    </main>
 
+    <footer>
+        <p>&copy; 2025 Valentine Week Wishes. Made with Love ❤️</p>
+        <p>Mugdha Jatin Sarmah. All Right Reserved</p>
+    </footer>
 
-        <div id="musicControl">
-             <audio id="backgroundMusic" loop src="music.mp3"></audio>
-             <button id="musicButton"><i class="fas fa-music"></i> Music: On</button>
-        </div>
-
-        <footer>
-            <p>With love and anticipation, <br> © Mugdha Jatin Sarmah - Valentine's Week 2025, All Rights Reserved</p>
-        </footer>
-    </div>
-
-    <div id="background-animation">
-        <div id="hearts">
-            </div>
-    </div>
+    <audio id="background-music" loop autoplay>
+        <source src="music.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
 
     <script src="script.js"></script>
 </body>
