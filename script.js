@@ -71,6 +71,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const todayEvent = events.find(event => event.day === day);
         if (todayEvent) {
             eventNameElement.textContent = todayEvent.name;
+            if (day === 8) { // Check if it's Valentine's Day
+                wishMessageElement.innerHTML = `${todayEvent.wish} <br><br><a href="https://mjsarmah57.github.io/propose/" target="_blank" style="color: #d6336c; text-decoration: none; font-weight: bold;">Click Me For a one more gift!</a>`;
             if (day === 14) { // Check if it's Valentine's Day
                 wishMessageElement.innerHTML = `${todayEvent.wish} <br><br><a href="https://mjsarmah57.github.io/surprise/" target="_blank" style="color: #d6336c; text-decoration: none; font-weight: bold;">Click Me For a one more gift!</a>`;
             } else {
