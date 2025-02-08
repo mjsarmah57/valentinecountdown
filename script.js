@@ -2,7 +2,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const events = [
         { day: 7, name: "Rose Day", wish: "Happy Rose Day! May your day be as beautiful as a rose and filled with love and fragrance." },
-        { day: 8, name: "Propose Day", wish: "Happy Propose Day! Dare to express your feelings and make someone's day special." },
+        { day: 8, name: "Propose Day", wish: "Happy Propose Day! I can't imagine my life without you. Happy Propose Day, my love!" },
         { day: 9, name: "Chocolate Day", wish: "Happy Chocolate Day! You're the sweetest thing in my life. Happy Chocolate Day, my love!" },
         { day: 10, name: "Teddy Day", wish: "Happy Teddy Day! Sending you a warm and cuddly teddy to hug and cherish." },
         { day: 11, name: "Promise Day", wish: "Happy Promise Day! Today, I promise to love you unconditionally and cherish our relationship forever." },
