@@ -3,12 +3,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const events = [
         { day: 7, name: "Rose Day", wish: "Happy Rose Day! May your day be as beautiful as a rose and filled with love and fragrance." },
         { day: 8, name: "Propose Day", wish: "Happy Propose Day! Dare to express your feelings and make someone's day special." },
-        { day: 9, name: "Chocolate Day", wish: "Happy Chocolate Day! Indulge in sweetness and share the joy with your loved ones." },
+        { day: 9, name: "Chocolate Day", wish: "Happy Chocolate Day! You're the sweetest thing in my life. Happy Chocolate Day, my love!" },
         { day: 10, name: "Teddy Day", wish: "Happy Teddy Day! Sending you a warm and cuddly teddy to hug and cherish." },
-        { day: 11, name: "Promise Day", wish: "Happy Promise Day! Make promises you can keep and strengthen your bonds of love." },
-        { day: 12, name: "Hug Day", wish: "Happy Hug Day! A warm hug can say a thousand words. Embrace your dear ones today." },
-        { day: 13, name: "Kiss Day", wish: "Happy Kiss Day! Seal your love with a kiss and make unforgettable memories." },
-        { day: 14, name: "Valentine's Day", wish: "Happy Valentine's Day! Celebrate love in all its forms and cherish your special connections." }
+        { day: 11, name: "Promise Day", wish: "Happy Promise Day! Today, I promise to love you unconditionally and cherish our relationship forever." },
+        { day: 12, name: "Hug Day", wish: "Happy Hug Day! Sending you a warm hug and lots of love on this special day." },
+        { day: 13, name: "Kiss Day", wish: "You're the best kisser in the world. Happy Kiss Day, my love!" },
+        { day: 14, name: "Valentine's Day", wish: "Happy Valentine's Day! Wishing you a day filled with love, laughter, and happiness. You're my Valentine, now and forever. Happy Valentine's Day, my love!" }
     ];
 
     const currentDate = new Date();
